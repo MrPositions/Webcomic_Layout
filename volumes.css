@@ -56,6 +56,12 @@ main .chapter button {
     width: 100%;
 }
 
+aside img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 footer {
     background-color: #333;
     color: #fff;
