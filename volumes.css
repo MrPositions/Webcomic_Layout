@@ -72,3 +72,25 @@ footer {
 footer p {
     margin: 0;
 }
+/* volumes.css */
+.volume.locked {
+    position: relative;
+    opacity: 0.6;
+}
+
+.volume.locked::before {
+    content: "\1F512"; /* Unicode for lock icon */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: red;
+}
+
+.volume.locked .btn-primary {
+    pointer-events: all;
+    background-color: grey;
+    border-color: grey;
+}
+
+
