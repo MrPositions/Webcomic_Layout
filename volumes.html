@@ -255,16 +255,8 @@
         <p>&copy; 2024 Your Webcomic Name. All rights reserved.</p>
     </div>
 </footer>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const lockedVolumes = document.querySelectorAll('.volume.locked .btn-primary');
-        lockedVolumes.forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                alert('This volume is locked. Please support us on Patreon for early access to chapters or wait for the official release date.');
-            });
-        });
-    });
+<script src="volumes.js">
+
 </script>
 </body>
 </html>
