@@ -9,6 +9,32 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .button-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .button-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .button-row > * {
+            margin: 0.5rem;
+        }
+        @media (max-width: 767px) {
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            .button-row {
+                flex-direction: row;
+                width: 100%;
+            }
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const totalChapters = 36;
@@ -79,19 +105,20 @@
         <h2>Chapter Title</h2>
         <p>Description or content of the chapter goes here.</p>
     </div>
-    <div class="text-center mb-4">
-        <div class="d-flex justify-content-center flex-wrap">
-            <button id="firstChapterBtn" class="btn btn-primary mx-1 my-1">First Chapter</button>
-            <button id="prevVolumeBtn" class="btn btn-secondary mx-1 my-1">Previous Volume</button>
-            <button id="prevChapterBtn" class="btn btn-secondary mx-1 my-1">Previous Chapter</button>
-
-            <!-- Chapter Dropdown -->
-            <select id="chapterDropdown" class="custom-select mx-1 my-1" style="width: auto;">
+    <div class="text-center mb-4 button-group">
+        <div class="button-row">
+            <button id="firstChapterBtn" class="btn btn-primary">First Chapter</button>
+            <button id="prevVolumeBtn" class="btn btn-secondary">Previous Volume</button>
+            <button id="prevChapterBtn" class="btn btn-secondary">Previous Chapter</button>
+        </div>
+        <div class="button-row">
+            <select id="chapterDropdown" class="custom-select" style="width: auto;">
             </select>
-
-            <button id="nextChapterBtn" class="btn btn-secondary mx-1 my-1">Next Chapter</button>
-            <button id="nextVolumeBtn" class="btn btn-secondary mx-1 my-1">Next Volume</button>
-            <button id="lastChapterBtn" class="btn btn-primary mx-1 my-1">Last Chapter</button>
+        </div>
+        <div class="button-row">
+            <button id="nextChapterBtn" class="btn btn-secondary">Next Chapter</button>
+            <button id="nextVolumeBtn" class="btn btn-secondary">Next Volume</button>
+            <button id="lastChapterBtn" class="btn btn-primary">Last Chapter</button>
         </div>
     </div>
 </main>
