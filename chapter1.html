@@ -12,26 +12,31 @@
     <style>
         .nav-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             flex-wrap: wrap;
         }
-        .nav-container .nav-left,
-        .nav-container .nav-right {
+        .nav-left, .nav-right {
             display: flex;
             flex-direction: column;
-            flex-wrap: nowrap;
+            align-items: center;
+            width: 100%;
         }
-        .nav-container .nav-center {
+        .nav-center {
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-wrap: nowrap;
+            margin: 10px 0;
         }
         @media (min-width: 768px) {
-            .nav-container .nav-left,
-            .nav-container .nav-right {
+            .nav-left, .nav-right {
                 flex-direction: row;
+                width: auto;
+            }
+            .nav-center {
+                width: auto;
+                margin: 0 20px;
             }
         }
     </style>
