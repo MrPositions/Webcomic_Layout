@@ -3,30 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter</title>
+    <title>Chapter 35</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="chapter.css">
+    <link rel="stylesheet" href="chapters.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
-        .nav-container {
+        .button-group {
             display: flex;
             justify-content: center;
-            align-items: center;
             flex-wrap: wrap;
-            text-align: center;
         }
-        .nav-left, .nav-right {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .nav-center {
+        .button-row {
             display: flex;
             justify-content: center;
-            align-items: center;
-            margin: 10px 0;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .button-row > * {
+            margin: 0.5rem;
+        }
+        @media (max-width: 767px) {
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            .button-row {
+                flex-direction: row;
+                width: 100%;
+            }
         }
     </style>
     <script>
@@ -85,7 +91,7 @@
 <body>
 <header class="bg-dark text-white py-3">
     <div class="container">
-        <h1 class="text-center">Chapter</h1>
+        <h1 class="text-center">Chapter 35</h1>
         <nav class="nav justify-content-center">
             <a class="nav-link text-white" href="index.html">Home</a>
             <a class="nav-link text-white" href="volumes.html">Volumes</a>
@@ -99,21 +105,20 @@
         <h2>Chapter Title</h2>
         <p>Description or content of the chapter goes here.</p>
     </div>
-    <div class="text-center mb-4 nav-container">
-        <div class="nav-left">
-            <button id="prevChapterBtn" class="btn btn-secondary my-1">Previous Chapter</button>
-            <button id="prevVolumeBtn" class="btn btn-secondary my-1">Previous Volume</button>
-            <button id="firstChapterBtn" class="btn btn-primary my-1">First Chapter</button>
+    <div class="text-center mb-4 button-group">
+        <div class="button-row">
+            <button id="firstChapterBtn" class="btn btn-primary">First Chapter</button>
+            <button id="prevVolumeBtn" class="btn btn-secondary">Previous Volume</button>
+            <button id="prevChapterBtn" class="btn btn-secondary">Previous Chapter</button>
         </div>
-        <div class="nav-center">
-            <!-- Chapter Dropdown -->
-            <select id="chapterDropdown" class="custom-select mx-2 my-1">
+        <div class="button-row">
+            <select id="chapterDropdown" class="custom-select" style="width: auto;">
             </select>
         </div>
-        <div class="nav-right">
-            <button id="nextChapterBtn" class="btn btn-secondary my-1">Next Chapter</button>
-            <button id="nextVolumeBtn" class="btn btn-secondary my-1">Next Volume</button>
-            <button id="lastChapterBtn" class="btn btn-primary my-1">Last Chapter</button>
+        <div class="button-row">
+            <button id="nextChapterBtn" class="btn btn-secondary">Next Chapter</button>
+            <button id="nextVolumeBtn" class="btn btn-secondary">Next Volume</button>
+            <button id="lastChapterBtn" class="btn btn-primary">Last Chapter</button>
         </div>
     </div>
 </main>
