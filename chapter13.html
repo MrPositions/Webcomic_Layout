@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="chapters.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const totalChapters = 36;
+
+            function getCurrentChapter() {
+                const url = window.location.pathname;
+                const chapterMatch = url.match(/chapter(\d+)\.html/);
+                return chapterMatch ? parseInt(chapterMatch[1]) : 1;
+            }
+
+            function navigateToChapter(chapter) {
+                window.location.href = `chapter${chapter}.html`;
+            }
+
+            const currentChapter = getCurrentChapter();
+
+            // Populate dropdown with chapters
+            const chapterDropdown = document.getElementById('chapterDropdown');
+            for (let i = 1; i <= totalChapters; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.text = `Chapter ${i}`;
+                if (i === currentChapter) {
+                    option.selected = true;
+                }
+                chapterDropdown.appendChild(option);
+            }
+
+            chapterDropdown.addEventListener('change', (event) => {
+                navigateToChapter(event.target.value);
+            });
+
+            document.getElementById('firstChapterBtn').addEventListener('click', () => navigateToChapter(1));
+            document.getElementById('prevVolumeBtn').addEventListener('click', () => {
+                const prevVolumeChapter = Math.max(currentChapter - 3, 1);
+                navigateToChapter(prevVolumeChapter);
+            });
+            document.getElementById('prevChapterBtn').addEventListener('click', () => {
+                const prevChapter = Math.max(currentChapter - 1, 1);
+                navigateToChapter(prevChapter);
+            });
+            document.getElementById('nextChapterBtn').addEventListener('click', () => {
+                const nextChapter = Math.min(currentChapter + 1, totalChapters);
+                navigateToChapter(nextChapter);
+            });
+            document.getElementById('nextVolumeBtn').addEventListener('click', () => {
+                const nextVolumeChapter = Math.min(currentChapter + 3, totalChapters);
+                navigateToChapter(nextVolumeChapter);
+            });
+            document.getElementById('lastChapterBtn').addEventListener('click', () => navigateToChapter(totalChapters));
+        });
+    </script>
+</head>
+<body>
+<header class="bg-dark text-white py-3">
+    <div class="container">
+        <h1 class="text-center">Chapter 13</h1>
+        <nav class="nav justify-content-center">
+            <a class="nav-link text-white" href="index.html">Home</a>
+            <a class="nav-link text-white" href="volumes.html">Volumes</a>
+            <a class="nav-link text-white" href="faq.html">FAQ</a>
+            <a class="nav-link text-white" href="commissions.html">Commissions</a>
+        </nav>
+    </div>
+</header>
+<main class="container my-4">
+    <div class="text-center mb-4">
+        <h2>Chapter Title</h2>
+        <p>Description or content of the chapter goes here.</p>
+    </div>
+    <div class="text-center mb-4">
+        <div class="d-flex justify-content-center flex-wrap">
+            <button id="firstChapterBtn" class="btn btn-primary mx-1 my-1">First Chapter</button>
+            <button id="prevVolumeBtn" class="btn btn-secondary mx-1 my-1">Previous Volume</button>
+            <button id="prevChapterBtn" class="btn btn-secondary mx-1 my-1">Previous Chapter</button>
+
+            <!-- Chapter Dropdown -->
+            <select id="chapterDropdown" class="custom-select mx-1 my-1" style="width: auto;">
+            </select>
+
+            <button id="nextChapterBtn" class="btn btn-secondary mx-1 my-1">Next Chapter</button>
+            <button id="nextVolumeBtn" class="btn btn-secondary mx-1 my-1">Next Volume</button>
+            <button id="lastChapterBtn" class="btn btn-primary mx-1 my-1">Last Chapter</button>
+        </div>
+    </div>
+</main>
+<footer class="bg-dark text-white py-3">
+    <div class="container text-center">
+        <p>&copy; 2024 Your Webcomic Name. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

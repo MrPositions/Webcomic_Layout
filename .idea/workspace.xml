@@ -5,9 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="818e4787-42a3-4c25-97b0-97cb09ca79b8" name="Changes" comment="Webcomic Skeleton">
-      <change afterPath="$PROJECT_DIR$/authenticate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter10.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter11.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter12.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter13.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter14.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter15.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter16.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter17.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter18.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter19.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter20.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter21.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter22.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter23.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter24.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter25.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter26.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter27.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter28.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter29.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter30.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter31.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter32.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter33.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter34.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter35.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter36.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter7.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter8.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter9.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapters.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/volumes.html" beforeDir="false" afterPath="$PROJECT_DIR$/volumes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/volumes.js" beforeDir="false" afterPath="$PROJECT_DIR$/volumes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +199,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718485801226</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Webcomic Skeleton">
+      <option name="closed" value="true" />
+      <created>1718490222521</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1718490222523</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
