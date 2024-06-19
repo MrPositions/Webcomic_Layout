@@ -34,6 +34,24 @@
                 width: 100%;
             }
         }
+        .comic-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .comic-container img {
+            max-width: 100%;
+            margin-bottom: 1rem;
+        }
+        .comments-section {
+            margin-top: 2rem;
+        }
+        .comments-section h3 {
+            margin-bottom: 1rem;
+        }
+        .comment {
+            margin-bottom: 1rem;
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -105,6 +123,24 @@
         <h2>Chapter Title</h2>
         <p>Description or content of the chapter goes here.</p>
     </div>
+    <div class="comic-container">
+        <!-- Add your comic images here -->
+        <img src="images1/page1.png" alt="Comic Image 1">
+        <img src="images1/page2.png" alt="Comic Image 2">
+        <img src="images1/page3.png" alt="Comic Image 3">
+        <img src="images1/page4.png" alt="Comic Image 4">
+        <img src="images1/page5.png" alt="Comic Image 5">
+        <img src="images1/page6.png" alt="Comic Image 6">
+        <img src="images1/page7.png" alt="Comic Image 7">
+        <img src="images1/page8.png" alt="Comic Image 8">
+        <img src="images1/page9.png" alt="Comic Image 9">
+        <img src="images1/page10.png" alt="Comic Image 10">
+        <img src="images1/page11.png" alt="Comic Image 11">
+        <img src="images1/page12.png" alt="Comic Image 12">
+        <img src="images1/page13.png" alt="Comic Image 13">
+        <img src="images1/page14.png" alt="Comic Image 14">
+        <img src="images1/page15.png" alt="Comic Image 15">
+    </div>
     <div class="text-center mb-4 button-group">
         <div class="button-row">
             <button id="firstChapterBtn" class="btn btn-primary">First Chapter</button>
@@ -120,6 +156,22 @@
             <button id="nextVolumeBtn" class="btn btn-secondary">Next Volume</button>
             <button id="lastChapterBtn" class="btn btn-primary">Last Chapter</button>
         </div>
+    </div>
+    <div class="comments-section">
+        <h3>Comments</h3>
+        <div class="comment">
+            <strong>User1:</strong> Great chapter!
+        </div>
+        <div class="comment">
+            <strong>User2:</strong> Can't wait for the next one.
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="commentText">Leave a comment:</label>
+                <textarea class="form-control" id="commentText" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </main>
 <footer class="bg-dark text-white py-3">
