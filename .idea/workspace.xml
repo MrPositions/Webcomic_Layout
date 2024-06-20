@@ -5,8 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="818e4787-42a3-4c25-97b0-97cb09ca79b8" name="Changes" comment="Webcomic Skeleton">
+      <change afterPath="$PROJECT_DIR$/chapters.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chapter1.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter10.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter10.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter11.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter11.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter12.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter12.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter13.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter13.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter14.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter14.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter15.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter15.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter16.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter16.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter17.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter17.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter18.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter18.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter19.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter19.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter2.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter20.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter20.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter21.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter21.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter22.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter22.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter23.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter23.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter24.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter24.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter25.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter25.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter26.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter26.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter27.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter27.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter28.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter28.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter29.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter29.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter3.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter30.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter30.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter31.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter31.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter32.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter32.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter33.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter33.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter34.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter34.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter35.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter35.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter36.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter36.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter4.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter5.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter6.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter7.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter8.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter8.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter9.html" beforeDir="false" afterPath="$PROJECT_DIR$/chapter9.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters.css" beforeDir="false" afterPath="$PROJECT_DIR$/chapters.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +270,31 @@
       <option name="project" value="LOCAL" />
       <updated>1718635674617</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Webcomic Skeleton">
+      <option name="closed" value="true" />
+      <created>1718832634361</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1718832634361</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Webcomic Skeleton">
+      <option name="closed" value="true" />
+      <created>1718832660430</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1718832660430</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Webcomic Skeleton">
+      <option name="closed" value="true" />
+      <created>1718833349207</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1718833349207</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

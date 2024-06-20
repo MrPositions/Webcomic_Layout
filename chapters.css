@@ -42,4 +42,56 @@ article section h3,
 article section h4 {
     margin-top: 0;
 }
+.button-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .button-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .button-row > * {
+            margin: 0.5rem;
+        }
+        @media (max-width: 767px) {
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            .button-row {
+                flex-direction: row;
+                width: 100%;
+            }
+        }
+        .comic-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .comic-container img {
+            max-width: 100%;
+            margin-bottom: 1rem;
+        }
+        .comments-section {
+            margin-top: 2rem;
+        }
+        .comments-section h3 {
+            margin-bottom: 1rem;
+        }
+        .comment-box {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: #f9f9f9;
+        }
+        .comment-buttons {
+            margin-top: 0.5rem;
+        }
+        .edit-area {
+            margin-bottom: 1rem;
+        }
 

@@ -9,84 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <style>
-        .button-group {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .button-row {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-        .button-row > * {
-            margin: 0.5rem;
-        }
-        @media (max-width: 767px) {
-            .button-group {
-                flex-direction: column;
-                align-items: center;
-            }
-            .button-row {
-                flex-direction: row;
-                width: 100%;
-            }
-        }
-    </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const totalChapters = 36;
-
-            function getCurrentChapter() {
-                const url = window.location.pathname;
-                const chapterMatch = url.match(/chapter(\d+)\.html/);
-                return chapterMatch ? parseInt(chapterMatch[1]) : 1;
-            }
-
-            function navigateToChapter(chapter) {
-                window.location.href = `chapter${chapter}.html`;
-            }
-
-            const currentChapter = getCurrentChapter();
-
-            // Populate dropdown with chapters
-            const chapterDropdown = document.getElementById('chapterDropdown');
-            for (let i = 1; i <= totalChapters; i++) {
-                const option = document.createElement('option');
-                option.value = i;
-                option.text = `Chapter ${i}`;
-                if (i === currentChapter) {
-                    option.selected = true;
-                }
-                chapterDropdown.appendChild(option);
-            }
-
-            chapterDropdown.addEventListener('change', (event) => {
-                navigateToChapter(event.target.value);
-            });
-
-            document.getElementById('firstChapterBtn').addEventListener('click', () => navigateToChapter(1));
-            document.getElementById('prevVolumeBtn').addEventListener('click', () => {
-                const prevVolumeChapter = Math.max(currentChapter - 3, 1);
-                navigateToChapter(prevVolumeChapter);
-            });
-            document.getElementById('prevChapterBtn').addEventListener('click', () => {
-                const prevChapter = Math.max(currentChapter - 1, 1);
-                navigateToChapter(prevChapter);
-            });
-            document.getElementById('nextChapterBtn').addEventListener('click', () => {
-                const nextChapter = Math.min(currentChapter + 1, totalChapters);
-                navigateToChapter(nextChapter);
-            });
-            document.getElementById('nextVolumeBtn').addEventListener('click', () => {
-                const nextVolumeChapter = Math.min(currentChapter + 3, totalChapters);
-                navigateToChapter(nextVolumeChapter);
-            });
-            document.getElementById('lastChapterBtn').addEventListener('click', () => navigateToChapter(totalChapters));
-        });
-    </script>
+    <script src="chapters.js"></script>
 </head>
 <body>
 <header class="bg-dark text-white py-3">
@@ -107,19 +30,50 @@
     </div>
     <div class="text-center mb-4 button-group">
         <div class="button-row">
-            <button id="firstChapterBtn" class="btn btn-primary">First Chapter</button>
-            <button id="prevVolumeBtn" class="btn btn-secondary">Previous Volume</button>
-            <button id="prevChapterBtn" class="btn btn-secondary">Previous Chapter</button>
+            <button id="firstChapterTopBtn" class="btn btn-primary">First Chapter</button>
+            <button id="prevVolumeTopBtn" class="btn btn-secondary">Previous Volume</button>
+            <button id="prevChapterTopBtn" class="btn btn-secondary">Previous Chapter</button>
         </div>
         <div class="button-row">
-            <select id="chapterDropdown" class="custom-select" style="width: auto;">
+            <select id="topChapterDropdown" class="custom-select" style="width: auto;">
             </select>
         </div>
         <div class="button-row">
-            <button id="nextChapterBtn" class="btn btn-secondary">Next Chapter</button>
-            <button id="nextVolumeBtn" class="btn btn-secondary">Next Volume</button>
-            <button id="lastChapterBtn" class="btn btn-primary">Last Chapter</button>
+            <button id="nextChapterTopBtn" class="btn btn-secondary">Next Chapter</button>
+            <button id="nextVolumeTopBtn" class="btn btn-secondary">Next Volume</button>
+            <button id="lastChapterTopBtn" class="btn btn-primary">Last Chapter</button>
         </div>
+    </div>
+    <div class="comic-container">
+        <!-- Add your comic images here -->
+
+    </div>
+    <div class="text-center mb-4 button-group">
+        <div class="button-row">
+            <button id="firstChapterBottomBtn" class="btn btn-primary">First Chapter</button>
+            <button id="prevVolumeBottomBtn" class="btn btn-secondary">Previous Volume</button>
+            <button id="prevChapterBottomBtn" class="btn btn-secondary">Previous Chapter</button>
+        </div>
+        <div class="button-row">
+            <select id="bottomChapterDropdown" class="custom-select" style="width: auto;">
+            </select>
+        </div>
+        <div class="button-row">
+            <button id="nextChapterBottomBtn" class="btn btn-secondary">Next Chapter</button>
+            <button id="nextVolumeBottomBtn" class="btn btn-secondary">Next Volume</button>
+            <button id="lastChapterBottomBtn" class="btn btn-primary">Last Chapter</button>
+        </div>
+    </div>
+    <div class="comments-section">
+        <h3>Comments</h3>
+        <form>
+            <div class="form-group">
+                <label for="commentText">Leave a comment:</label>
+                <textarea class="form-control" id="commentText" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div id="submittedComments"></div>
     </div>
 </main>
 <footer class="bg-dark text-white py-3">
