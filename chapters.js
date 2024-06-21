@@ -1,15 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
     const totalChapters = 36;
+    const chapterNames = ['Introduction', 'Prologue']; // Add names for special chapters
+    for (let i = 1; i <= totalChapters - 2; i++) {
+        chapterNames.push(`Chapter ${i}`);
+    }
     const username = 'You'; // Replace with actual username logic if needed
 
     function getCurrentChapter() {
         const url = window.location.pathname;
+        if (url.includes('introduction.html')) return 'Introduction';
+        if (url.includes('prologue.html')) return 'Prologue';
         const chapterMatch = url.match(/chapter(\d+)\.html/);
-        return chapterMatch ? parseInt(chapterMatch[1]) : 1;
+        return chapterMatch ? `Chapter ${parseInt(chapterMatch[1])}` : 'Introduction';
     }
 
     function navigateToChapter(chapter) {
-        window.location.href = `chapter${chapter}.html`;
+        if (chapter === 'Introduction') {
+            window.location.href = 'introduction.html';
+        } else if (chapter === 'Prologue') {
+            window.location.href = 'prologue.html';
+        } else {
+            const chapterNumber = parseInt(chapter.replace('Chapter ', ''));
+            window.location.href = `chapter${chapterNumber}.html`;
+        }
     }
 
     const currentChapter = getCurrentChapter();
@@ -18,16 +31,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const topChapterDropdown = document.getElementById('topChapterDropdown');
     const bottomChapterDropdown = document.getElementById('bottomChapterDropdown');
 
-    for (let i = 1; i <= totalChapters; i++) {
+    chapterNames.forEach((name, index) => {
         const option = document.createElement('option');
-        option.value = i;
-        option.textContent = `Chapter ${i}`;
-        if (i === currentChapter) {
+        option.value = name;
+        option.textContent = name;
+        if (name === currentChapter) {
             option.selected = true;
         }
         topChapterDropdown.appendChild(option.cloneNode(true));
         bottomChapterDropdown.appendChild(option);
-    }
+    });
 
     // Event listener for top dropdown
     topChapterDropdown.addEventListener('change', (event) => {
@@ -45,24 +58,31 @@ document.addEventListener('DOMContentLoaded', function() {
         bottomChapterDropdown.value = chapter;
     }
 
+    // Function to get the current volume
+    function getCurrentVolume(chapter) {
+        const index = chapterNames.indexOf(chapter);
+        return Math.floor(index / 3);
+    }
+
     // Function to update chapter navigation buttons
     function updateNavigationButtons(chapter) {
-        const isFirstChapter = chapter === 1;
-        const isLastChapter = chapter === totalChapters;
+        const volume = getCurrentVolume(chapter);
+        const isFirstVolume = volume === 0;
+        const isLastVolume = volume === Math.floor((totalChapters - 1) / 3);
 
-        document.getElementById('firstChapterTopBtn').disabled = isFirstChapter;
-        document.getElementById('prevVolumeTopBtn').disabled = chapter <= 3;
-        document.getElementById('prevChapterTopBtn').disabled = isFirstChapter;
-        document.getElementById('nextChapterTopBtn').disabled = isLastChapter;
-        document.getElementById('nextVolumeTopBtn').disabled = chapter >= totalChapters - 2;
-        document.getElementById('lastChapterTopBtn').disabled = isLastChapter;
+        document.getElementById('firstChapterTopBtn').disabled = isFirstVolume && chapter === 'Introduction';
+        document.getElementById('prevVolumeTopBtn').disabled = isFirstVolume;
+        document.getElementById('prevChapterTopBtn').disabled = chapter === 'Introduction';
+        document.getElementById('nextChapterTopBtn').disabled = isLastVolume && chapter === `Chapter ${totalChapters - 2}`;
+        document.getElementById('nextVolumeTopBtn').disabled = isLastVolume;
+        document.getElementById('lastChapterTopBtn').disabled = isLastVolume && chapter === `Chapter ${totalChapters - 2}`;
 
-        document.getElementById('firstChapterBottomBtn').disabled = isFirstChapter;
-        document.getElementById('prevVolumeBottomBtn').disabled = chapter <= 3;
-        document.getElementById('prevChapterBottomBtn').disabled = isFirstChapter;
-        document.getElementById('nextChapterBottomBtn').disabled = isLastChapter;
-        document.getElementById('nextVolumeBottomBtn').disabled = chapter >= totalChapters - 2;
-        document.getElementById('lastChapterBottomBtn').disabled = isLastChapter;
+        document.getElementById('firstChapterBottomBtn').disabled = isFirstVolume && chapter === 'Introduction';
+        document.getElementById('prevVolumeBottomBtn').disabled = isFirstVolume;
+        document.getElementById('prevChapterBottomBtn').disabled = chapter === 'Introduction';
+        document.getElementById('nextChapterBottomBtn').disabled = isLastVolume && chapter === `Chapter ${totalChapters - 2}`;
+        document.getElementById('nextVolumeBottomBtn').disabled = isLastVolume;
+        document.getElementById('lastChapterBottomBtn').disabled = isLastVolume && chapter === `Chapter ${totalChapters - 2}`;
     }
 
     // Initial call to update buttons and dropdowns based on current chapter
@@ -70,43 +90,63 @@ document.addEventListener('DOMContentLoaded', function() {
     updateChapterDropdowns(currentChapter);
 
     // Event listeners for navigation buttons
-    document.getElementById('firstChapterTopBtn').addEventListener('click', () => navigateToChapter(1));
+    document.getElementById('firstChapterTopBtn').addEventListener('click', () => navigateToChapter('Introduction'));
     document.getElementById('prevVolumeTopBtn').addEventListener('click', () => {
-        const prevVolumeChapter = Math.max(currentChapter - 3, 1);
-        navigateToChapter(prevVolumeChapter);
+        const volume = getCurrentVolume(currentChapter);
+        if (volume > 0) {
+            const firstChapterOfPrevVolume = chapterNames[(volume - 1) * 3];
+            navigateToChapter(firstChapterOfPrevVolume);
+        }
     });
     document.getElementById('prevChapterTopBtn').addEventListener('click', () => {
-        const prevChapter = Math.max(currentChapter - 1, 1);
-        navigateToChapter(prevChapter);
+        const index = chapterNames.indexOf(currentChapter);
+        if (index > 0) {
+            navigateToChapter(chapterNames[index - 1]);
+        }
     });
     document.getElementById('nextChapterTopBtn').addEventListener('click', () => {
-        const nextChapter = Math.min(currentChapter + 1, totalChapters);
-        navigateToChapter(nextChapter);
+        const index = chapterNames.indexOf(currentChapter);
+        if (index < chapterNames.length - 1) {
+            navigateToChapter(chapterNames[index + 1]);
+        }
     });
     document.getElementById('nextVolumeTopBtn').addEventListener('click', () => {
-        const nextVolumeChapter = Math.min(currentChapter + 3, totalChapters);
-        navigateToChapter(nextVolumeChapter);
+        const volume = getCurrentVolume(currentChapter);
+        if (volume < Math.floor((totalChapters - 1) / 3)) {
+            const firstChapterOfNextVolume = chapterNames[(volume + 1) * 3];
+            navigateToChapter(firstChapterOfNextVolume);
+        }
     });
-    document.getElementById('lastChapterTopBtn').addEventListener('click', () => navigateToChapter(totalChapters));
+    document.getElementById('lastChapterTopBtn').addEventListener('click', () => navigateToChapter(`Chapter ${totalChapters - 2}`));
 
-    document.getElementById('firstChapterBottomBtn').addEventListener('click', () => navigateToChapter(1));
+    document.getElementById('firstChapterBottomBtn').addEventListener('click', () => navigateToChapter('Introduction'));
     document.getElementById('prevVolumeBottomBtn').addEventListener('click', () => {
-        const prevVolumeChapter = Math.max(currentChapter - 3, 1);
-        navigateToChapter(prevVolumeChapter);
+        const volume = getCurrentVolume(currentChapter);
+        if (volume > 0) {
+            const firstChapterOfPrevVolume = chapterNames[(volume - 1) * 3];
+            navigateToChapter(firstChapterOfPrevVolume);
+        }
     });
     document.getElementById('prevChapterBottomBtn').addEventListener('click', () => {
-        const prevChapter = Math.max(currentChapter - 1, 1);
-        navigateToChapter(prevChapter);
+        const index = chapterNames.indexOf(currentChapter);
+        if (index > 0) {
+            navigateToChapter(chapterNames[index - 1]);
+        }
     });
     document.getElementById('nextChapterBottomBtn').addEventListener('click', () => {
-        const nextChapter = Math.min(currentChapter + 1, totalChapters);
-        navigateToChapter(nextChapter);
+        const index = chapterNames.indexOf(currentChapter);
+        if (index < chapterNames.length - 1) {
+            navigateToChapter(chapterNames[index + 1]);
+        }
     });
     document.getElementById('nextVolumeBottomBtn').addEventListener('click', () => {
-        const nextVolumeChapter = Math.min(currentChapter + 3, totalChapters);
-        navigateToChapter(nextVolumeChapter);
+        const volume = getCurrentVolume(currentChapter);
+        if (volume < Math.floor((totalChapters - 1) / 3)) {
+            const firstChapterOfNextVolume = chapterNames[(volume + 1) * 3];
+            navigateToChapter(firstChapterOfNextVolume);
+        }
     });
-    document.getElementById('lastChapterBottomBtn').addEventListener('click', () => navigateToChapter(totalChapters));
+    document.getElementById('lastChapterBottomBtn').addEventListener('click', () => navigateToChapter(`Chapter ${totalChapters - 2}`));
 
     // Handle comment form submission and loading comments
     const commentsKey = `comments-chapter-${currentChapter}`;
