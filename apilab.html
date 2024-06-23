@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Lab</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="apilab.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .card {
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav .nav-links {
+            display: flex;
+        }
+        .nav .nav-links a {
+            margin-left: 20px;
+            position: relative;
+            color: white;
+            text-decoration: none;
+        }
+        .nav .nav-links a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+        }
+        .nav .nav-links a:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<header class="bg-dark text-white py-3">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="text-white">API Lab</h1>
+            <nav class="nav">
+                <div class="nav-links">
+                    <a class="nav-link text-white" href="index.html">Home</a>
+                    <a class="nav-link text-white" href="volumes.html">Volumes</a>
+                    <a class="nav-link text-white" href="faq.html">FAQ</a>
+                    <a class="nav-link text-white" href="commissions.html">Commissions</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main class="container my-4">
+    <h2 class="text-center">User Names from API</h2>
+    <div class="container" id="user-container">
+        <!-- User cards will be appended here -->
+    </div>
+</main>
+
+<footer class="bg-dark text-white py-3">
+    <div class="container text-center">
+        <p>&copy; 2024 RFighter. All rights reserved.</p>
+    </div>
+</footer>
+
+
+</body>
+</html>
