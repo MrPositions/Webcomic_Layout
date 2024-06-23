@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="818e4787-42a3-4c25-97b0-97cb09ca79b8" name="Changes" comment="Webcomic Skeleton">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apilab.js" beforeDir="false" afterPath="$PROJECT_DIR$/apilab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apilab.html" beforeDir="false" afterPath="$PROJECT_DIR$/apilab.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apilab2.html" beforeDir="false" afterPath="$PROJECT_DIR$/apilab2.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -313,7 +314,23 @@
       <option name="project" value="LOCAL" />
       <updated>1719114997424</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Webcomic Skeleton">
+      <option name="closed" value="true" />
+      <created>1719115935044</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1719115935044</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Webcomic Skeleton">
+      <option name="closed" value="true" />
+      <created>1719116245871</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1719116245871</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
