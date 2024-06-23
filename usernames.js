@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const userContainer = document.getElementById('user-container');
+    const apiUrl = 'http://dummyjson.com/users';
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
-    fetch('http://dummyjson.com/users')
+    fetch(proxyUrl + apiUrl)
         .then(response => response.json())
         .then(data => {
             console.log(data); // Log the data to see its structure
