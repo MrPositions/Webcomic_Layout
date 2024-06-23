@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
             const userContainer = document.getElementById('user-container');
 
-            fetch('https://github.com/Ovi/DummyJSON/blob/master/database/users.json')
+            fetch('http://dummyjson.com/users')
                 .then(response => response.json())
                 .then(data => {
                     console.log(data); // Log the data to see its structure
