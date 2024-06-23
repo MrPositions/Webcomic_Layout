@@ -9,7 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log(user); // Log each user to see its structure
                 const userCard = document.createElement('div');
                 userCard.classList.add('card');
-                userCard.innerText = `${user.firstName} ${user.lastName}`; // Adjusted to use firstName and lastName
+                userCard.innerHTML = `
+                    <h4>${user.firstName} ${user.lastName}</h4>
+                    <p>Email: ${user.email}</p>
+                    <p>Username: ${user.username}</p>
+                `;
                 userContainer.appendChild(userCard);
             });
         })
