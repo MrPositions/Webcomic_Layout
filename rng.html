@@ -120,7 +120,7 @@
         let availableNumbers = [];
 
         function fetchAvailableNumbers() {
-            fetch('http://dummyjson.com/products') // Dummy API endpoint for demonstration
+            fetch("https://dummyjson.com/products") // Dummy API endpoint for demonstration
                 .then(response => response.json())
                 .then(data => {
                     // Assuming the API returns an array of products with 'id' fields
