@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .card {
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .number-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: not-allowed; /* Disabled initially */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button.enabled {
+            cursor: pointer;
+            background-color: #007BFF;
+        }
+        button.enabled:hover {
+            background-color: #0056b3;
+        }
+        .nav-link {
+            color: white !important;
+            text-decoration: none;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        @media(max-width: 600px) {
+            .number-display {
+                width: 150px;
+                height: 150px;
+                font-size: 1.5em;
+            }
+            button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="bg-dark text-white py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="text-white">Random Number Generator</h1>
+        <nav class="nav">
+            <div class="nav-links d-flex">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="volumes.html">Volumes</a>
+                <a class="nav-link" href="faq.html">FAQ</a>
+                <a class="nav-link" href="commissions.html">Commissions</a>
+                <a class="nav-link" href="apilab.html">API Lab</a>
+                <a class="nav-link" href="apilab2.html">API Lab 2</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main class="container my-4 d-flex flex-column align-items-center">
+    <div class="number-display" id="number-display">--</div>
+    <button id="generate-button" disabled>Generate Number</button>
+</main>
+
+<footer class="bg-dark text-white py-3">
+    <div class="container text-center">
+        <p>&copy; 2024 RFighter. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const numberDisplay = document.getElementById('number-display');
+        const generateButton = document.getElementById('generate-button');
+        let availableNumbers = [];
+
+        function fetchAvailableNumbers() {
+            fetch('http://dummyjson.com/products') // Dummy API endpoint for demonstration
+                .then(response => response.json())
+                .then(data => {
+                    // Assuming the API returns an array of products with 'id' fields
+                    availableNumbers = data.products.map(product => product.id);
+                    generateButton.disabled = false; // Enable the button
+                    generateButton.classList.add('enabled'); // Update button style
+                })
+                .catch(error => console.error('Error fetching the available numbers:', error));
+        }
+
+        function getRandomNumber() {
+            if (availableNumbers.length > 0) {
+                const randomIndex = Math.floor(Math.random() * availableNumbers.length);
+                return availableNumbers[randomIndex];
+            }
+            return null;
+        }
+
+        generateButton.addEventListener('click', () => {
+            const randomNumber = getRandomNumber();
+            if (randomNumber !== null) {
+                numberDisplay.innerText = randomNumber;
+            }
+        });
+
+        // Fetch available numbers on initial load
+        fetchAvailableNumbers();
+    });
+</script>
+</body>
+</html>
