@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Translator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        html, body {
+            height: 100%; /* Make sure html and body take full height */
+            margin: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Push footer to the bottom */
+        }
+        .container {
+            flex: 1; /* Allow container to grow and fill available space */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            padding: 20px;
+        }
+        .translator-container {
+            display: flex;
+            flex: 1; /* Ensure the container grows to fill space */
+            justify-content: space-between;
+            align-items: stretch; /* Stretch children to fill container height */
+            width: 100%;
+        }
+        .form-control-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            margin: 0 10px;
+        }
+        .form-control {
+            flex: 1; /* Allow textarea to take available space */
+            resize: vertical;
+        }
+        .card {
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 10px;
+            padding: 20px;
+            height: 100%; /* Fill available space */
+        }
+        .translate-button-container {
+            display: flex;
+            justify-content: center; /* Center the translate button horizontally */
+            margin-top: 20px; /* Space above the translate button */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .nav-link {
+            color: white !important;
+            text-decoration: none;
+            margin-left: 15px; /* Spacing between nav links */
+        }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        @media(max-width: 600px) {
+            .translator-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .form-control {
+                height: 400px; /* Adjusted for smaller screens */
+            }
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            flex-shrink: 0; /* Prevent footer from shrinking */
+        }
+        header {
+            background-color: #343a40; /* Dark background for header */
+            color: white;
+            padding: 15px 0; /* Adjusted padding */
+        }
+        .header-container {
+            max-width: 1140px; /* Max width to match Bootstrap container */
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-title {
+            margin: 0;
+        }
+        .header-nav {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <h1 class="header-title">Language Translator</h1>
+        <nav class="header-nav">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="volumes.html">Volumes</a>
+            <a class="nav-link" href="faq.html">FAQ</a>
+            <a class="nav-link" href="commissions.html">Commissions</a>
+            <a class="nav-link" href="apilab.html">API Lab</a>
+            <a class="nav-link" href="apilab2.html">API Lab 2</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <div class="translator-container">
+        <div class="form-control-container">
+            <select id="from-language" class="custom-select mb-3">
+                <!-- Add language options here -->
+            </select>
+            <textarea id="source-text" class="form-control" placeholder="Enter text here..."></textarea>
+        </div>
+        <div class="d-flex flex-column align-items-center justify-content-center mx-3">
+            <button id="swap-button" class="btn btn-secondary mb-3">&#8596;</button>
+            <div class="translate-button-container">
+                <button id="translate-button" class="btn btn-primary">Translate</button>
+            </div>
+        </div>
+        <div class="form-control-container">
+            <select id="to-language" class="custom-select mb-3">
+                <!-- Add language options here -->
+            </select>
+            <textarea id="translated-text" class="form-control" readonly placeholder="Translation will appear here..."></textarea>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 RFighter. All rights reserved.</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="bookie.js"></script>
+</body>
+</html>
