@@ -9,7 +9,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="chapters.js"></script>
 </head>
 <body>
 <header class="bg-dark text-white py-3">
@@ -30,52 +29,41 @@
     </div>
     <div class="text-center mb-4 button-group">
         <div class="button-row">
-            <button id="firstChapterTopBtn" class="btn btn-primary">First Chapter</button>
             <button id="prevVolumeTopBtn" class="btn btn-secondary">Previous Volume</button>
             <button id="prevChapterTopBtn" class="btn btn-secondary">Previous Chapter</button>
+            <button id="prevPageTopBtn" class="btn btn-secondary">Previous Page</button>
         </div>
         <div class="button-row">
-            <select id="topChapterDropdown" class="custom-select" style="width: auto;">
-            </select>
+            <select id="topChapterDropdown" class="custom-select" style="width: auto;"></select>
         </div>
         <div class="button-row">
+            <select id="topPageDropdown" class="custom-select" style="width: auto;"></select>
+        </div>
+        <div class="button-row">
+            <button id="nextPageTopBtn" class="btn btn-secondary">Next Page</button>
             <button id="nextChapterTopBtn" class="btn btn-secondary">Next Chapter</button>
             <button id="nextVolumeTopBtn" class="btn btn-secondary">Next Volume</button>
-            <button id="lastChapterTopBtn" class="btn btn-primary">Last Chapter</button>
         </div>
     </div>
-    <div class="comic-container">
-        <!-- Add your comic images here -->
-        <img src="imagesintro/page1.png" alt="Comic Image 1">
-        <img src="imagesintro/page2.png" alt="Comic Image 2">
-        <img src="imagesintro/page3.png" alt="Comic Image 3">
-        <img src="imagesintro/page4.png" alt="Comic Image 4">
-        <img src="imagesintro/page5.png" alt="Comic Image 5">
-        <img src="imagesintro/page5.5.png" alt="Comic Image 5.5">
-        <img src="imagesintro/page6.png" alt="Comic Image 6">
-        <img src="imagesintro/page7.png" alt="Comic Image 7">
-        <img src="imagesintro/page8.png" alt="Comic Image 8">
-        <img src="imagesintro/page9.png" alt="Comic Image 9">
-        <img src="imagesintro/page10.png" alt="Comic Image 10">
-        <img src="imagesintro/page11.png" alt="Comic Image 11">
-        <img src="imagesintro/page12.png" alt="Comic Image 12">
-
-
+    <div class="comic-container text-center">
+        <img id="comicImage" src="imagesintro/page1.png" alt="Comic Image" class="img-fluid">
     </div>
     <div class="text-center mb-4 button-group">
         <div class="button-row">
-            <button id="firstChapterBottomBtn" class="btn btn-primary">First Chapter</button>
             <button id="prevVolumeBottomBtn" class="btn btn-secondary">Previous Volume</button>
             <button id="prevChapterBottomBtn" class="btn btn-secondary">Previous Chapter</button>
+            <button id="prevPageBottomBtn" class="btn btn-secondary">Previous Page</button>
         </div>
         <div class="button-row">
-            <select id="bottomChapterDropdown" class="custom-select" style="width: auto;">
-            </select>
+            <select id="bottomPageDropdown" class="custom-select" style="width: auto;"></select>
         </div>
         <div class="button-row">
+            <select id="bottomChapterDropdown" class="custom-select" style="width: auto;"></select>
+        </div>
+        <div class="button-row">
+            <button id="nextPageBottomBtn" class="btn btn-secondary">Next Page</button>
             <button id="nextChapterBottomBtn" class="btn btn-secondary">Next Chapter</button>
             <button id="nextVolumeBottomBtn" class="btn btn-secondary">Next Volume</button>
-            <button id="lastChapterBottomBtn" class="btn btn-primary">Last Chapter</button>
         </div>
     </div>
     <div class="comments-section">
@@ -85,7 +73,7 @@
                 <label for="commentText">Leave a comment:</label>
                 <textarea class="form-control" id="commentText" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" id="submitCommentBtn">Submit</button>
         </form>
         <div id="submittedComments"></div>
     </div>
@@ -95,5 +83,216 @@
         <p>&copy; 2024 RFighter. All rights reserved.</p>
     </div>
 </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const chapterNames = ['Introduction', 'Prologue'];
+    for (let i = 1; i <= 34; i++) {
+        chapterNames.push(`Chapter ${i}`);
+    }
+    const totalVolumes = 12;
+    const username = 'You';
+    const currentChapter = getCurrentChapter();
+
+    // Define volume structure
+    const volumes = [
+        ['Introduction', 'Prologue', 'Chapter 1'],
+        ['Chapter 2', 'Chapter 3', 'Chapter 4'],
+        ['Chapter 5', 'Chapter 6', 'Chapter 7'],
+        ['Chapter 8', 'Chapter 9', 'Chapter 10'],
+        ['Chapter 11', 'Chapter 12', 'Chapter 13'],
+        ['Chapter 14', 'Chapter 15', 'Chapter 16'],
+        ['Chapter 17', 'Chapter 18', 'Chapter 19'],
+        ['Chapter 20', 'Chapter 21', 'Chapter 22'],
+        ['Chapter 23', 'Chapter 24', 'Chapter 25'],
+        ['Chapter 26', 'Chapter 27', 'Chapter 28'],
+        ['Chapter 29', 'Chapter 30', 'Chapter 31'],
+        ['Chapter 32', 'Chapter 33', 'Chapter 34']
+    ];
+
+    function getVolumeIndex(chapter) {
+        return volumes.findIndex(volume => volume.includes(chapter));
+    }
+
+    function getCurrentChapter() {
+        const url = window.location.pathname;
+        if (url.includes('introduction.html')) return 'Introduction';
+        if (url.includes('prologue.html')) return 'Prologue';
+        const chapterMatch = url.match(/chapter(\d+)\.html/);
+        return chapterMatch ? `Chapter ${chapterMatch[1]}` : null;
+    }
+
+    function navigateToChapter(chapter) {
+        let url;
+        if (chapter === 'Introduction') url = 'introduction.html';
+        else if (chapter === 'Prologue') url = 'prologue.html';
+        else {
+            const chapterNumber = chapter.split(' ')[1];
+            url = `chapter${chapterNumber}.html`;
+        }
+        window.location.href = url;
+    }
+
+    function navigateToVolume(direction) {
+        const currentVolumeIndex = getVolumeIndex(currentChapter);
+        let newVolumeIndex;
+        if (direction === 'next') {
+            newVolumeIndex = currentVolumeIndex + 1;
+        } else {
+            newVolumeIndex = currentVolumeIndex - 1;
+        }
+        if (newVolumeIndex >= 0 && newVolumeIndex < totalVolumes) {
+            navigateToChapter(volumes[newVolumeIndex][0]);
+        } else {
+            alert('No more volumes available.');
+        }
+    }
+
+    const topChapterDropdown = document.getElementById('topChapterDropdown');
+    const bottomChapterDropdown = document.getElementById('bottomChapterDropdown');
+    const topPageDropdown = document.getElementById('topPageDropdown');
+    const bottomPageDropdown = document.getElementById('bottomPageDropdown');
+
+    const populateDropdown = (dropdown) => {
+        chapterNames.forEach((chapter) => {
+            const option = document.createElement('option');
+            option.value = chapter;
+            option.text = chapter;
+            option.selected = chapter === currentChapter;
+            dropdown.appendChild(option);
+        });
+    };
+
+    const syncChapterDropdowns = (value) => {
+        topChapterDropdown.value = value;
+        bottomChapterDropdown.value = value;
+    };
+
+    const syncPageDropdowns = (value) => {
+        topPageDropdown.value = value;
+        bottomPageDropdown.value = value;
+    };
+
+    populateDropdown(topChapterDropdown);
+    populateDropdown(bottomChapterDropdown);
+
+    topChapterDropdown.addEventListener('change', (e) => {
+        navigateToChapter(e.target.value);
+    });
+
+    bottomChapterDropdown.addEventListener('change', (e) => {
+        navigateToChapter(e.target.value);
+    });
+
+    // Comic image handling
+    const comicImage = document.getElementById('comicImage');
+
+    async function fetchTotalComicPages() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const totalPages = 100; // Maximum page limit
+                resolve(totalPages);
+            }, 100); // Simulate delay
+        });
+    }
+
+    function extractPageNumber(pageName) {
+        const match = pageName.match(/page(\d+)\.png$/);
+        return match ? parseInt(match[1], 10) : NaN;
+    }
+
+    async function initializeComicPages() {
+        const totalComicPages = await fetchTotalComicPages();
+        const imageBasePath = 'imagesintro/';
+        const imageExtension = '.png';
+        const comicPages = [];
+        const topDropdownOptions = [];
+        const bottomDropdownOptions = [];
+        const promises = [];
+
+        for (let i = 1; i <= totalComicPages; i++) {
+            const pageUrl = `${imageBasePath}page${i}${imageExtension}`;
+            const img = new Image();
+            const promise = new Promise((resolve) => {
+                img.onload = () => {
+                    comicPages.push(pageUrl);
+                    const option = document.createElement('option');
+                    option.value = pageUrl;
+                    option.text = `Page ${i}`;
+                    if (i === 1) {
+                        option.selected = true;
+                    }
+                    topDropdownOptions.push(option);
+                    bottomDropdownOptions.push(option.cloneNode(true));
+                    resolve();
+                };
+                img.onerror = () => resolve(); // Resolve even if image is not found
+            });
+            img.src = pageUrl;
+            promises.push(promise);
+        }
+
+        await Promise.all(promises);
+        topPageDropdown.append(...topDropdownOptions);
+        bottomPageDropdown.append(...bottomDropdownOptions);
+        topPageDropdown.addEventListener('change', (e) => {
+            comicImage.src = e.target.value;
+            syncPageDropdowns(e.target.value);
+        });
+        bottomPageDropdown.addEventListener('change', (e) => {
+            comicImage.src = e.target.value;
+            syncPageDropdowns(e.target.value);
+        });
+    }
+
+    initializeComicPages();
+
+    function navigatePage(direction) {
+        const currentPageNumber = extractPageNumber(comicImage.src);
+        const newPageNumber = direction === 'next' ? currentPageNumber + 1 : currentPageNumber - 1;
+        const newPageUrl = `imagesintro/page${newPageNumber}.png`;
+        const img = new Image();
+        img.onload = () => {
+            comicImage.src = newPageUrl;
+            syncPageDropdowns(newPageUrl);
+        };
+        img.onerror = () => alert('No more pages available.');
+        img.src = newPageUrl;
+    }
+
+    // Top navigation buttons
+    document.getElementById('prevVolumeTopBtn').addEventListener('click', () => navigateToVolume('previous'));
+    document.getElementById('nextVolumeTopBtn').addEventListener('click', () => navigateToVolume('next'));
+    document.getElementById('prevChapterTopBtn').addEventListener('click', () => navigateToChapter(volumes[getVolumeIndex(currentChapter) - 1]?.[2]));
+    document.getElementById('nextChapterTopBtn').addEventListener('click', () => navigateToChapter(volumes[getVolumeIndex(currentChapter) + 1]?.[0]));
+    document.getElementById('prevPageTopBtn').addEventListener('click', () => navigatePage('previous'));
+    document.getElementById('nextPageTopBtn').addEventListener('click', () => navigatePage('next'));
+
+    // Bottom navigation buttons
+    document.getElementById('prevVolumeBottomBtn').addEventListener('click', () => navigateToVolume('previous'));
+    document.getElementById('nextVolumeBottomBtn').addEventListener('click', () => navigateToVolume('next'));
+    document.getElementById('prevChapterBottomBtn').addEventListener('click', () => navigateToChapter(volumes[getVolumeIndex(currentChapter) - 1]?.[2]));
+    document.getElementById('nextChapterBottomBtn').addEventListener('click', () => navigateToChapter(volumes[getVolumeIndex(currentChapter) + 1]?.[0]));
+    document.getElementById('prevPageBottomBtn').addEventListener('click', () => navigatePage('previous'));
+    document.getElementById('nextPageBottomBtn').addEventListener('click', () => navigatePage('next'));
+
+    // Comments handling
+    const commentText = document.getElementById('commentText');
+    const submittedComments = document.getElementById('submittedComments');
+    document.getElementById('submitCommentBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        const comment = commentText.value.trim();
+        if (comment !== '') {
+            const commentElement = document.createElement('div');
+            commentElement.classList.add('comment');
+            const date = new Date();
+            const formattedDate = date.toLocaleString();
+            commentElement.innerHTML = `<strong>${username}:</strong> ${comment}<br><small>${formattedDate}</small>`;
+            submittedComments.prepend(commentElement);
+            commentText.value = '';
+        }
+    });
+});
+
+</script>
 </body>
 </html>
