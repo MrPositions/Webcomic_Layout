@@ -84,7 +84,7 @@
     </div>
 </footer>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const chapterNames = ['Introduction', 'Prologue'];
     for (let i = 1; i <= 34; i++) {
         chapterNames.push(`Chapter ${i}`);
@@ -147,19 +147,36 @@
         }
     }
 
+    function navigateToChapterInVolume(direction) {
+        const currentVolumeIndex = getVolumeIndex(currentChapter);
+        const currentVolume = volumes[currentVolumeIndex];
+        let newChapterIndex;
+        if (direction === 'next') {
+            newChapterIndex = currentVolume.indexOf(currentChapter) + 1;
+        } else {
+            newChapterIndex = currentVolume.indexOf(currentChapter) - 1;
+        }
+        if (newChapterIndex >= 0 && newChapterIndex < currentVolume.length) {
+            navigateToChapter(currentVolume[newChapterIndex]);
+        } else {
+            alert('No more chapters available.');
+        }
+    }
+
     const topChapterDropdown = document.getElementById('topChapterDropdown');
     const bottomChapterDropdown = document.getElementById('bottomChapterDropdown');
     const topPageDropdown = document.getElementById('topPageDropdown');
     const bottomPageDropdown = document.getElementById('bottomPageDropdown');
 
-    const populateDropdown = (dropdown) => {
-        chapterNames.forEach((chapter) => {
+    const populateDropdown = (dropdown, items) => {
+        dropdown.innerHTML = ''; // Clear existing options
+        items.forEach((item) => {
             const option = document.createElement('option');
-            option.value = chapter;
-            option.text = chapter;
-            option.selected = chapter === currentChapter;
+            option.value = item;
+            option.text = item;
             dropdown.appendChild(option);
         });
+        dropdown.value = currentChapter;
     };
 
     const syncChapterDropdowns = (value) => {
@@ -172,8 +189,8 @@
         bottomPageDropdown.value = value;
     };
 
-    populateDropdown(topChapterDropdown);
-    populateDropdown(bottomChapterDropdown);
+    populateDropdown(topChapterDropdown, chapterNames);
+    populateDropdown(bottomChapterDropdown, chapterNames);
 
     topChapterDropdown.addEventListener('change', (e) => {
         navigateToChapter(e.target.value);
@@ -218,9 +235,6 @@
                     const option = document.createElement('option');
                     option.value = pageUrl;
                     option.text = `Page ${i}`;
-                    if (i === 1) {
-                        option.selected = true;
-                    }
                     topDropdownOptions.push(option);
                     bottomDropdownOptions.push(option.cloneNode(true));
                     resolve();
@@ -232,8 +246,31 @@
         }
 
         await Promise.all(promises);
+
+        // Sort the dropdown options by page number
+        topDropdownOptions.sort((a, b) => {
+            const numA = parseInt(a.text.replace('Page ', ''), 10);
+            const numB = parseInt(b.text.replace('Page ', ''), 10);
+            return numA - numB;
+        });
+
+        bottomDropdownOptions.sort((a, b) => {
+            const numA = parseInt(a.text.replace('Page ', ''), 10);
+            const numB = parseInt(b.text.replace('Page ', ''), 10);
+            return numA - numB;
+        });
+
+        topPageDropdown.innerHTML = ''; // Clear existing options
+        bottomPageDropdown.innerHTML = ''; // Clear existing options
         topPageDropdown.append(...topDropdownOptions);
         bottomPageDropdown.append(...bottomDropdownOptions);
+
+        // Set the initial image and sync dropdowns
+        if (comicPages.length > 0) {
+            comicImage.src = comicPages[0];
+            syncPageDropdowns(comicPages[0]);
+        }
+
         topPageDropdown.addEventListener('change', (e) => {
             comicImage.src = e.target.value;
             syncPageDropdowns(e.target.value);
@@ -262,16 +299,16 @@
     // Top navigation buttons
     document.getElementById('prevVolumeTopBtn').addEventListener('click', () => navigateToVolume('previous'));
     document.getElementById('nextVolumeTopBtn').addEventListener('click', () => navigateToVolume('next'));
-    document.getElementById('prevChapterTopBtn').addEventListener('click', () => navigateToChapter(volumes[getVolumeIndex(currentChapter) - 1]?.[2]));
-    document.getElementById('nextChapterTopBtn').addEventListener('click', () => navigateToChapter(volumes[getVolumeIndex(currentChapter) + 1]?.[0]));
+    document.getElementById('prevChapterTopBtn').addEventListener('click', () => navigateToChapterInVolume('previous'));
+    document.getElementById('nextChapterTopBtn').addEventListener('click', () => navigateToChapterInVolume('next'));
     document.getElementById('prevPageTopBtn').addEventListener('click', () => navigatePage('previous'));
     document.getElementById('nextPageTopBtn').addEventListener('click', () => navigatePage('next'));
 
     // Bottom navigation buttons
     document.getElementById('prevVolumeBottomBtn').addEventListener('click', () => navigateToVolume('previous'));
     document.getElementById('nextVolumeBottomBtn').addEventListener('click', () => navigateToVolume('next'));
-    document.getElementById('prevChapterBottomBtn').addEventListener('click', () => navigateToChapter(volumes[getVolumeIndex(currentChapter) - 1]?.[2]));
-    document.getElementById('nextChapterBottomBtn').addEventListener('click', () => navigateToChapter(volumes[getVolumeIndex(currentChapter) + 1]?.[0]));
+    document.getElementById('prevChapterBottomBtn').addEventListener('click', () => navigateToChapterInVolume('previous'));
+    document.getElementById('nextChapterBottomBtn').addEventListener('click', () => navigateToChapterInVolume('next'));
     document.getElementById('prevPageBottomBtn').addEventListener('click', () => navigatePage('previous'));
     document.getElementById('nextPageBottomBtn').addEventListener('click', () => navigatePage('next'));
 
@@ -292,6 +329,7 @@
         }
     });
 });
+
 
 </script>
 </body>
